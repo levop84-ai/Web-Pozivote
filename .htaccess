@@ -1,0 +1,56 @@
+# =============================================================================
+# (P)o životě 2026 – Security Headers
+# Pouze bezpečnostní hlavičky, bez přesměrování
+# =============================================================================
+
+# ---------------------------------------------------------------------------
+# Content Security Policy
+# ---------------------------------------------------------------------------
+<IfModule mod_headers.c>
+    Header always set Content-Security-Policy "\
+default-src 'self'; \
+script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://connect.facebook.net; \
+style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; \
+font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; \
+img-src 'self' data: https://www.facebook.com https://graph.facebook.com; \
+frame-src 'self' https://form.simpleshop.cz https://www.facebook.com https://web.facebook.com; \
+connect-src 'self' https://form.simpleshop.cz; \
+object-src 'none'; \
+base-uri 'self'; \
+form-action 'self' https://form.simpleshop.cz; \
+upgrade-insecure-requests"
+
+    # -----------------------------------------------------------------------
+    # Clickjacking protection
+    # -----------------------------------------------------------------------
+    Header always set X-Frame-Options "SAMEORIGIN"
+
+    # -----------------------------------------------------------------------
+    # MIME type sniffing protection
+    # -----------------------------------------------------------------------
+    Header always set X-Content-Type-Options "nosniff"
+
+    # -----------------------------------------------------------------------
+    # Referrer policy
+    # -----------------------------------------------------------------------
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+    # -----------------------------------------------------------------------
+    # Permissions policy – disable unused browser features
+    # -----------------------------------------------------------------------
+    Header always set Permissions-Policy "\
+camera=(), \
+microphone=(), \
+geolocation=(), \
+payment=(), \
+usb=(), \
+magnetometer=(), \
+gyroscope=(), \
+accelerometer=()"
+
+</IfModule>
+
+# ---------------------------------------------------------------------------
+# Custom error pages
+# ---------------------------------------------------------------------------
+ErrorDocument 404 /404.html
