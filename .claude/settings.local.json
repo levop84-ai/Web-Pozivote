@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(tail -30 \"c:/VC weby/P\\(o\\) zivote3/Web Pozivote/style.css\")",
+      "Bash(wc -l \"c:/VC weby/P\\(o\\) zivote3/Web Pozivote/style.css\")",
+      "Bash(tail -5 \"c:/VC weby/P\\(o\\) zivote3/Web Pozivote/style.css\")"
+    ]
+  }
+}

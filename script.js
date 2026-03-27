@@ -34,6 +34,7 @@ navToggle.addEventListener('click', function () {
 
 navMenu.querySelectorAll('a').forEach(function (link) {
   link.addEventListener('click', function () {
+    if (link.classList.contains('nav-dropdown-toggle')) return;
     if (navMenu.classList.contains('active')) {
       navMenu.classList.remove('active');
       navToggle.classList.remove('active');
